@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monthly Expenses Form</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="container">
+  <h2>Monthly Salary and Expenses</h2>
+  <form id="expenseForm">
+
+      <!-- Age -->
+      <div class="form-group">
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" placeholder="Enter your age" required>
+      </div>
+
+      <!-- Salary Input -->
+      <div class="form-group">
+          <label for="salary">Monthly Salary:</label>
+          <input type="number" id="salary" name="salary" placeholder="Enter your salary" required>
+      </div>
+
+      <!-- Additional Income -->
+      <div class="form-group">
+          <label for="additionalIncome">Additional Income:</label>
+          <input type="number" id="additionalIncome" name="additionalIncome" placeholder="Enter additional income" required>
+      </div>
+
+      <!-- Investments / Passive Income -->
+      <div class="form-group">
+          <label for="investments">Investments / Passive Income:</label>
+          <input type="number" id="investments" name="investments" placeholder="Enter investments income" required>
+      </div>
+
+      <!-- Bonuses / Commissions -->
+      <div class="form-group">
+          <label for="bonuses">Bonuses / Commissions:</label>
+          <input type="number" id="bonuses" name="bonuses" placeholder="Enter bonuses or commissions" required>
+      </div>
+
+      <!-- Government Benefits -->
+      <div class="form-group">
+          <label for="govBenefits">Government Benefits:</label>
+          <input type="number" id="govBenefits" name="govBenefits" placeholder="Enter government benefits" required>
+      </div>
+
+      <h3>Expenses</h3>
+      <table class="expense-table" id="expenseTable">
+          <thead>
+              <tr>
+                  <th>Expense Type</th>
+                  <th>Amount</th>
+                  <th>Expense Category</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Expense rows added by scripts.js -->
+          </tbody>
+      </table>
+      <button type="button" class="btn add-expense-btn" onclick="addExpenseRow()">Add Expense</button>
+
+      <div class="form-group" style="margin-top: 20px;">
+          <button type="submit" class="btn">Submit (Generate Report & Charts)</button>
+      </div>
+  </form>
+</div>
+
+<!-- Text-based budget report from the LLM -->
+<div id="reportOutput" class="report-container"></div>
+
+<!-- Collapsible chain-of-thought content from <think>...</think> -->
+<details id="thinkDetails" class="report-container" style="display:none; margin-top:10px;">
+  <summary>DeepSeek Chain-of-Thought (<think>...</think>)</summary>
+  <div id="thinkContent" style="white-space: pre-wrap;"></div>
+</details>
+
+<!-- Charts (initially hidden) -->
+<div id="chartsContainer" class="report-container" style="display:none;">
+  <h3>Charts</h3>
+  <img id="chart1Image" alt="Expenses as % of Total Income" style="max-width: 400px; display:block; margin-bottom:20px;" />
+  <img id="chart2Image" alt="Projected Roth IRA Growth" style="max-width: 400px;" />
+</div>
+
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
